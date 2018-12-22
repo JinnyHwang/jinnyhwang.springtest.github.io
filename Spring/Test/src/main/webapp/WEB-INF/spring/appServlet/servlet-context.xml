@@ -8,6 +8,8 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+
+
 <!-- web.xml에서 스프링에 내장된 컨트롤러(여기선 DispatcherServlet)로 이동한 후 servlet-context.xml 참조 -->
 
 <!-- https://doublesprogramming.tistory.com/84 참고! -->
@@ -52,11 +54,14 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	
+
+	
 	<!-- ExceptionResolver를 이용하여 에러를 처리할 수 있다 -->
 
 	<!-- base package 설정 -->
-	<context:component-scan
-		base-package="com.testmvc.springtest" />
-
+	<context:component-scan base-package="com.testmvc.springtest" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 
 </beans:beans>
